@@ -24,10 +24,47 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-8 col-xs-offset-2" ng-controller='ResourceController'>
-
-        <button class="btn btn-default">Add</button>
-        <button class="btn btn-default">Edit</button>
-        <button class="btn btn-default">Delete</button>
+            [[entry | json]]
+            <hr/>
+            [[entries | json]]
+            <hr/>
+            <table class="table table-condensed">
+                <tbody>
+                    <tr ng-repeat="e in entries">
+                        <td>[[e.name]]</td>
+                        <td>[[e.desc]]</td>
+                        <td>[[e.url]]</td>
+                        <td>
+                            <button class="btn btn-link" ng-click="viewEntry(e)">View</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-link" ng-click="deleteEntry(e)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <form>
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" ng-model="entry.name" class="form-control" id="name" placeholder="Entry Name Here"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc" class="col-sm-2 control-label">Desc</label>
+              <div class="col-sm-10">
+                <input type="text" ng-model="entry.desc" class="form-control" id="desc" placeholder="Entry Desc Here"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10" style="margin-top: 5px;">
+                <button type="submit" class="btn btn-default" ng-click="AddEntry(entry)">Add</button>
+                <button class="btn btn-default">Edit</button>
+                <button class="btn btn-default" ng-click="deleteEntry(entry)">Delete</button>
+              </div>
+                [[entry | json]]
+            </div>
+        </form>
 
         </div>
       </div>
